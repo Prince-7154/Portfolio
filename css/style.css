@@ -211,14 +211,32 @@ h3 {
 }
 
 /* My services */
-
 .my_services {
   background-color: var(--clr-dark);
   background-image: url(../img/7.jpeg);
   background-size: cover;
   color: var(--clr-light);
   text-align: center;
+  position: relative;
 }
+
+/* Add overlay to make text more readable */
+.my_services::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.my_services > * {
+  position: relative;
+  z-index: 2;
+}
+
 .section_title_services {
   color: var(--clr-accent);
   position: relative;
@@ -232,24 +250,47 @@ h3 {
   margin: 0.5em auto 1em;
   background-color: var(--clr-light);
 }
+
 .services {
   margin-bottom: 4em;
+  gap: 2em;
 }
+
 .service {
   max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 2em auto;
+  padding: 2em;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(22, 224, 189, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.service:hover {
+  transform: translateY(-5px);
+}
+
+.service h3 {
+  color: var(--clr-accent);
+  margin-bottom: 1em;
+}
+
+.service p {
+  font-size: var(--fs-body);
+  line-height: 1.6;
 }
 
 @media (min-width: 800px) {
   .services {
     display: flex;
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1200px;
+    margin: 0 auto 4em;
+    gap: 2em;
   }
 
-  .services + .service {
-    margin-left: 3em;
+  .service {
+    margin: 0;
+    flex: 1;
   }
 }
 
@@ -294,27 +335,104 @@ h3 {
 }
 
 /* my work */
-
 .my-work {
   background-color: var(--clr-dark);
   color: var(--clr-light);
   text-align: center;
+  padding: 5em 2em;
 }
+
 .portfolio {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
+
 .portfolio_item {
-  background: var(--clr-accent);
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: var(--bs);
+  aspect-ratio: 16/9;
 }
 
 .portfolio_img {
-  transition: transform 750ms cubic-bezier(0.5, 0, 0.5, 1), opacity 250ms linear;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 500ms ease;
 }
 
-.portfolio_img:hover {
-  transform: scale(1.2);
-  opacity: 0.75;
+.portfolio_overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(22, 224, 189, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 350ms ease;
+  padding: 20px;
+}
+
+.portfolio_title {
+  color: var(--clr-dark);
+  font-size: var(--fs-h3);
+  margin-bottom: 0.5em;
+  transform: translateY(20px);
+  transition: transform 350ms ease;
+}
+
+.portfolio_description {
+  color: var(--clr-dark);
+  margin-bottom: 1em;
+  transform: translateY(20px);
+  transition: transform 350ms ease 100ms;
+}
+
+.portfolio_link {
+  color: var(--clr-dark);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: var(--fw-bold);
+  font-size: 0.9rem;
+  border: 2px solid var(--clr-dark);
+  padding: 0.5em 1.5em;
+  border-radius: 4px;
+  transform: translateY(20px);
+  transition: transform 350ms ease 200ms;
+}
+
+.portfolio_item:hover .portfolio_img {
+  transform: scale(1.1);
+}
+
+.portfolio_item:hover .portfolio_overlay {
+  opacity: 1;
+}
+
+.portfolio_item:hover .portfolio_title,
+.portfolio_item:hover .portfolio_description,
+.portfolio_item:hover .portfolio_link {
+  transform: translateY(0);
+}
+
+.portfolio_link:hover {
+  background-color: var(--clr-dark);
+  color: var(--clr-accent);
+}
+
+@media (min-width: 800px) {
+  .portfolio {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* footer */
