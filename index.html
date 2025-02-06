@@ -1,148 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prince Portfolio website</title>
-    <link rel="stylesheet" href="./font/fontawesome-free-5.15.4-web/css/all.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./Roboto/Roboto-Black.ttf">
-</head>
-<body>
-  <header>
+    <link rel="icon" type="image/png" href="./img/header_logo.jpg" />
+    <link
+      rel="stylesheet"
+      href="./font/fontawesome-free-5.15.4-web/css/all.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./Roboto/Roboto-Black.ttf" />
+
+    <script>
+      // Add this script at the end of your body tag
+      const projectsData = [
+        {
+          title: "Chess Game",
+          description:
+            "A classic chess game developed in C using the SDL library. Features an interactive UI, move validation, and AI-powered opponent logic for a challenging gameplay experience.",
+          technologies: ["C", "SDL", "C++"],
+          image: "./img/14.jpg",
+          githubLink:
+            "https://github.com/Prince-7154/Projects/tree/main/chess-game",
+        },
+        {
+          title: "Writer Predictor",
+          description:
+            "An AI-based handwriting analysis tool that predicts the writer based on handwriting samples. Uses Transformer models and deep learning techniques for accurate predictions.",
+          technologies: ["Python", "Transformer", "AI"],
+          image: "./img/13.jpg",
+          githubLink:
+            "https://github.com/Prince-7154/Projects/tree/main/writerprediction",
+        },
+        {
+          title: "JobFinder",
+          description:
+            "A React Native application designed to help users find job listings, apply for positions, and track applications. Features include real-time job updates, personalized recommendations, and an intuitive UI.",
+          technologies: ["React Native", "JavaScript", "Firebase"],
+          image: "./img/12.jpg",
+          githubLink: "https://github.com/Prince-7154/JobFinder",
+        },
+        {
+          title: "Sketch2Code",
+          description:
+            "A machine learning-powered application that converts hand-drawn sketches into functional HTML/CSS code. Built using CCT (Convolutional Character Transformer) and Transformer models in Python.",
+          technologies: ["Python", "CCT", "Transformer", "ML/AI"],
+          image: "./img/11.jpg",
+          githubLink:
+            "https://github.com/Prince-7154/Projects/tree/main/Sketch2HTML",
+        },
+        // Add data for other projects
+      ];
+
+      function openModal(index) {
+        const modal = document.getElementById("portfolioModal");
+        const project = projectsData[index];
+
+        document.getElementById("modalImage").src = project.image;
+        document.getElementById("modalTitle").textContent = project.title;
+        document.getElementById("modalDescription").textContent =
+          project.description;
+
+        const techContainer = document.getElementById("modalTech");
+        techContainer.innerHTML = project.technologies
+          .map((tech) => `<span class="tech-tag">${tech}</span>`)
+          .join("");
+
+        document.getElementById("modalGithubLink").href = project.githubLink;
+
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("portfolioModal");
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+      }
+
+      // Close modal when clicking outside
+      window.onclick = function (event) {
+        const modal = document.getElementById("portfolioModal");
+        if (event.target === modal) {
+          closeModal();
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div class="scroll-progress">
+      <div class="scroll-progress-bar"></div>
+    </div>
+
+    <header>
       <div class="logo">
-          <img src="./img/logo.png" alt="Logo">
+        <img src="./img/logo.png" alt="Logo" />
       </div>
-      <!-- <button class="nav-toggle" aria-label="toggle navigation">
-          <span class="ham"></span>
-        </button> -->
-        <nav class="nav">
-            <ul class="nav_list">
-                <li class="nav_item nav_home"><a href="#home" class="nav_link">Home</a></li>
-                <li class="nav_item"><a href="#services" class="nav_link">My service</a></li>
-                <li class="nav_item"><a href="#about" class="nav_link">About me</a></li>
-                <li class="nav_item"><a href="#work" class="nav_link">My work</a></li>
-            </ul>
-        </nav>
-  </header>  
-  <!-- introduction -->
-  <section class="intro" id="home">
+      <nav class="nav">
+        <ul class="nav_list">
+          <li class="nav_item">
+            <a href="#home" class="nav_link active">Home</a>
+          </li>
+          <li class="nav_item">
+            <a href="#services" class="nav_link">My Services</a>
+          </li>
+          <li class="nav_item">
+            <a href="#about" class="nav_link">About Me</a>
+          </li>
+          <li class="nav_item">
+            <a href="#work" class="nav_link">My Work</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- introduction -->
+    <section class="intro" id="home">
       <h1 class="section_title section_title_intro">
-          Hi,I am <strong>Prince Poudel</strong>
+        Hi,I am <strong>Prince Poudel</strong>
       </h1>
-      <p class="section_subtitle section_subtitle_intro">Student of Computer Engineering</p>
-      <img src="./img/Profile.jpg" alt="Me" class="intro_img">
-  </section>
+      <p class="section_subtitle section_subtitle_intro">
+        Student of Computer Engineering
+      </p>
+      <img src="./img/Profile.jpg" alt="Me" class="intro_img" />
+    </section>
 
+    <!-- My services -->
 
-  <!-- My services -->
-
-  <section class="my_services" id="services">
+    <section class="my_services" id="services">
       <h2 class="section_title section_title_services">What I do</h2>
       <div class="services">
+        <div class="service">
+          <h3>Java + SpringBoot</h3>
+          <p>
+            I’m a backend developer who loves building powerful and efficient
+            systems using Java and Spring Boot. I’ve created APIs that drive
+            seamless communication between applications and ensure smooth
+            database management with Liquibase for structured migrations.
+            Whether it’s handling complex data flows or optimizing backend
+            performance, I focus on making systems scalable and reliable.
+          </p>
+        </div>
 
-          <div class="service">
-              <h3>Design + Development</h3>
-              <p>
-                  Here I create a website with full responsive systems. I mainly work on front-end. Design and creating a websites are the major work for me right now but i am improving day by day.
-              </p>
-          </div>
-        
-            <div class="service">
-                <h3>E-commerce</h3>
-                <p>
-                An e-commerce system provides real-time data and analytics about products and customers. Exploring how people interact
-                with the site, what products interest them, what they left in their cart and how much was the average purchase. Such
-                valuable statistics allow businesses to make adjustments to meet customer's.
-                </p>
-            </div>
+        <div class="service">
+          <h3>React and React Native</h3>
+          <p>
+            On the frontend, I work with React and React Native, with a special
+            passion for mobile app development. I enjoy crafting smooth,
+            user-friendly experiences that feel natural and intuitive. From
+            designing interactive interfaces to connecting with my backend
+            services, I make sure every app I build is polished, responsive, and
+            ready to perform across different devices.
+          </p>
+        </div>
 
-            <div class="service">
-                <h3>WordPress</h3>
-                <p>
-                    I am also great at WorldPress.I can handle the websites created by WordPress.WordPress is a content management system (CMS) that allows you to host and build websites. WordPress contains plugin
-                    architecture and a template system, so you can customize any website to fit your business, blog, portfolio, or online
-                    store.
-                </p>   
-            </div>
+        <div class="service">
+          <h3>AI/ML</h3>
+          <p>
+            I also dive into the world of Machine Learning and AI, exploring how
+            technology can interpret handwriting and sketches in creative ways.
+            One of my projects predicts a writer’s identity based on
+            handwriting, while another transforms sketches into functional code.
+            I’m fascinated by the possibilities of AI-driven solutions that
+            bridge the gap between human creativity and technology.
+          </p>
+        </div>
       </div>
 
-    <a href="#work" class="btn">My Work</a>
+      <a href="#work" class="btn">My Work</a>
+    </section>
 
-  </section>
-
-  <!-- About me -->
-  <section class="about-me" id="about">
-      <h2 class="section_title section_title_about">
-          Who I am
-      </h2>
+    <!-- About me -->
+    <section class="about-me" id="about">
+      <h2 class="section_title section_title_about">Who I am</h2>
       <p class="section_subtitle section_subtitle_about">
-        Web  developer and Programmer
+        Java Backend Developer | AI/ML Explorer
       </p>
 
       <div class="about-me_body">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequuntur officia temporibus recusandae fugiat quae enim qui repudiandae doloribus voluptates nihil. Non animi delectus error sed maiores quisquam voluptatibus excepturi nemo!</p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident tenetur eum quis minus culpa facere in deserunt ipsam laborum aspernatur aperiam, adipisci, maiores atque vitae!</p>
+        <p>
+          I’m a final-year Computer Engineering student at Thapathali Campus,
+          passionate about building innovative and efficient software solutions.
+          My journey in tech has led me to work extensively with Java and Spring
+          Boot, where I develop robust backend systems, create APIs, and manage
+          databases using Liquibase for smooth migrations.
+        </p>
+        <p>
+          On the frontend, I specialize in React and React Native, with a strong
+          focus on mobile app development. I love designing and developing apps
+          that provide seamless user experiences while ensuring they are
+          well-integrated with backend services. Creating polished,
+          high-performing applications is something I take pride in.
+        </p>
+
+        <p>
+          I’m also deeply interested in Machine Learning and AI, working on
+          projects that push the boundaries of what’s possible. From
+          handwriting-based writer prediction to transforming sketches into
+          functional code, I enjoy exploring AI-driven solutions that blend
+          creativity and technology. My goal is to keep learning, innovating,
+          and building impactful digital experiences.
+        </p>
       </div>
 
-      <img src="./img/Full.jpg" alt="My photo" class="about-me_img">
-  </section>
+      <img src="./img/Full.jpg" alt="My photo" class="about-me_img" />
+    </section>
 
-  <!-- My work -->
-  <section class="my-work" id="work">
+    <!-- My work -->
+    <!-- Replace your existing portfolio section with this -->
+    <section class="my-work" id="work">
       <h2 class="section_title section_title_work">My work</h2>
-      <p class="section_subtitle section_subtitle_work">Selection of my range of works</p>
+      <p class="section_subtitle section_subtitle_work">
+        Selection of my range of works
+      </p>
 
       <div class="portfolio">
-          <a href="#" class="portfolio_item">
-              <img src="./img/1.jpeg" alt="" class="portfolio_img">
-          </a>
+        <div class="portfolio_item" onclick="openModal(0)">
+          <img src="./img/1.jpg" alt="Project 1" class="portfolio_img" />
+        </div>
 
-        <a href="#" class="portfolio_item">
-            <img src="./img/2.jpeg" alt="" class="portfolio_img">
-        </a>
+        <div class="portfolio_item" onclick="openModal(1)">
+          <img src="./img/2.jpg" alt="Project 2" class="portfolio_img" />
+        </div>
 
-        <a href="#" class="portfolio_item">
-            <img src="./img/3.jpg" alt="" class="portfolio_img">
-        </a>
+        <div class="portfolio_item" onclick="openModal(2)">
+          <img src="./img/3.jpg" alt="Project 3" class="portfolio_img" />
+        </div>
 
-        <a href="#" class="portfolio_item">
-            <img src="./img/4.jpeg" alt="" class="portfolio_img">
-        </a>
+        <div class="portfolio_item" onclick="openModal(3)">
+          <img src="./img/4.jpg" alt="Project 4" class="portfolio_img" />
+        </div>
 
-        <a href="#" class="portfolio_item">
-            <img src="./img/5.jpeg" alt="" class="portfolio_img">
-        </a>
+        <!-- Add similar structure for other portfolio items -->
+      </div>
 
-        <a href="#" class="portfolio_item">
-            <img src="./img/6.jpeg" alt="" class="portfolio_img">
-        <!-- <a href="#" class="portfolio_item">
-            <img src="./img/7.jpeg" alt="" class="portfolio_img"> -->
-        </a>
+      <!-- Modal -->
+      <div id="portfolioModal" class="modal">
+        <div class="modal-content">
+          <span class="close-modal" onclick="closeModal()">&times;</span>
+          <div class="modal-body">
+            <img
+              id="modalImage"
+              src=""
+              alt="Project Image"
+              class="modal-image"
+            />
+            <div class="modal-info">
+              <h3 id="modalTitle" class="modal-title"></h3>
+              <p id="modalDescription" class="modal-description"></p>
+              <div id="modalTech" class="modal-tech"></div>
+              <div class="modal-links">
+                <a id="modalGithubLink" href="#" class="modal-btn">View Code</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <a href="#" class="portfolio_item">
-            <img src="./img/8.jpeg" alt="" class="portfolio_img"> </a>
-        <a href="#" class="portfolio_item">
-                <img src="./img/9.jpeg" alt="" class="portfolio_img"> </a>
-        
-        <a href="#" class="portfolio_item">
-            <img src="./img/10.jpeg" alt="" class="portfolio_img"> </a>
-    </div>
-  </section>
+    <footer class="footer">
+      <a href="mailto:princepoudel1010@gmail.com" class="footer_link"
+        >princepoudel1010@gmail.com</a
+      >
 
-  <footer class="footer">
-      <a href="mailto:princepoudel1010@gmail.com"class = "footer_link">princepoudel1010@gmail.com</a>
       <ul class="social-list">
-          <li class="social-list_item"><a class = "social-list_link "href="#"><i class="fab fa-facebook"></i></a></li>
-        <li class="social-list_item"><a class="social-list_link " href="#"><i class="fab fa-twitter"></i></a></li>
-        <li class="social-list_item"><a class="social-list_link " href="#"><i class="fab fa-instagram"></i></a></li>
-        <li class="social-list_item"><a class="social-list_link " href="#"><i class="fab fa-github"></i></a></li>
-
+        <li class="social-list_item">
+          <a
+            class="social-list_link"
+            href="https://www.facebook.com/PrincePoudel.1010"
+            ><i class="fab fa-facebook"></i
+          ></a>
+        </li>
+        <li class="social-list_item">
+          <a class="social-list_link" href="https://github.com/Prince-7154"
+            ><i class="fab fa-github"></i
+          ></a>
+        </li>
+        <li class="social-list_item">
+          <a class="social-list_link" href="#"
+            ><i class="fab fa-twitter"></i
+          ></a>
+        </li>
+        <li class="social-list_item">
+          <a class="social-list_link" href="#"
+            ><i class="fab fa-instagram"></i
+          ></a>
+        </li>
       </ul>
-  </footer>
+    </footer>
+  </body>
+  <script>
+    // Update active link and scroll progress
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav_link");
+      const progressBar = document.querySelector(".scroll-progress-bar");
 
+      function updateNavigation() {
+        // Update scroll progress bar
+        const scrollPercent =
+          (window.scrollY /
+            (document.documentElement.scrollHeight - window.innerHeight)) *
+          100;
+        progressBar.style.width = `${scrollPercent}%`;
 
+        // Update active nav link
+        const scrollY = window.scrollY;
 
-</body>
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.offsetHeight;
+          const sectionId = section.getAttribute("id");
+
+          if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active");
+              if (link.getAttribute("href") === `#${sectionId}`) {
+                link.classList.add("active");
+              }
+            });
+          }
+        });
+      }
+
+      // Add smooth scrolling
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          const targetSection = document.querySelector(targetId);
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      window.addEventListener("scroll", updateNavigation);
+      updateNavigation();
+    });
+  </script>
 </html>
